@@ -231,9 +231,9 @@ export default function Home() {
 
     // If user is not connected to the Rinkeby network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 5) {
-      window.alert("Change the network to Goerli");
-      throw new Error("Change network to Goerli");
+    if (chainId !== 80001) {
+      window.alert("Change the network to mumbai");
+      throw new Error("Change network to mumbai");
     }
 
     if (needSigner) {
@@ -252,7 +252,7 @@ export default function Home() {
       // Assign the Web3Modal class to the reference object by setting it's `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: "rinkeby",
+        network: "mumbai",
         providerOptions: {},
         disableInjectedProvider: false,
       });
@@ -291,7 +291,10 @@ export default function Home() {
     // If wallet is not connected, return a button which allows them to connect their wllet
     if (!walletConnected) {
       return (
-        <button onClick={connectWallet} className={styles.button}>
+        <button
+          onClick={connectWallet}
+          className={styles.button}
+        >
           Connect your wallet
         </button>
       );
@@ -305,7 +308,10 @@ export default function Home() {
     // If connected user is the owner, and presale hasnt started yet, allow them to start the presale
     if (isOwner && !presaleStarted) {
       return (
-        <button className={styles.button} onClick={startPresale}>
+        <button
+          className={styles.button}
+          onClick={startPresale}
+        >
           Start Presale!
         </button>
       );
@@ -328,7 +334,10 @@ export default function Home() {
             Presale has started!!! If your address is whitelisted, Mint a Crypto
             Dev 🥳
           </div>
-          <button className={styles.button} onClick={presaleMint}>
+          <button
+            className={styles.button}
+            onClick={presaleMint}
+          >
             Presale Mint 🚀
           </button>
         </div>
@@ -338,7 +347,10 @@ export default function Home() {
     // If presale started and has ended, its time for public minting
     if (presaleStarted && presaleEnded) {
       return (
-        <button className={styles.button} onClick={publicMint}>
+        <button
+          className={styles.button}
+          onClick={publicMint}
+        >
           Public Mint 🚀
         </button>
       );
@@ -349,8 +361,14 @@ export default function Home() {
     <div>
       <Head>
         <title>Crypto Devs</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Whitelist-Dapp"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className={styles.main}>
         <div>
@@ -364,7 +382,10 @@ export default function Home() {
           {renderButton()}
         </div>
         <div>
-          <img className={styles.image} src="./cryptodevs/0.svg" />
+          <img
+            className={styles.image}
+            src="./cryptodevs/0.svg"
+          />
         </div>
       </div>
 
